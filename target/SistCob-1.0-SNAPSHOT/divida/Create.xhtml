@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DividaCreateDlg" widgetVar="DividaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDividaTitle}">
+            <h:form id="DividaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dividaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDividaLabel_devedor}" for="devedor" />
+                        <p:selectOneMenu id="devedor" value="#{dividaController.selected.devedor}" >
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="devedorItem"
+                                           itemLabel="#{devedorItem.nome}"
+                                           itemValue="#{devedorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDividaLabel_valorDiv}" for="valorDiv" />
+                        <p:inputText id="valorDiv" value="#{dividaController.selected.valorDiv}" title="#{bundle.CreateDividaTitle_valorDiv}" required="true" requiredMessage="#{bundle.CreateDividaRequiredMessage_valorDiv}"/>
+                        <p:outputLabel value="#{bundle.CreateDividaLabel_dataDivda}" for="dataDivda" />
+                        <p:calendar id="dataDivda" pattern="dd/MM/yyyy" value="#{dividaController.selected.dataDivda}" title="#{bundle.EditDividaTitle_dataDivda}" required="true" requiredMessage="#{bundle.EditDividaRequiredMessage_dataDivda}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDividaLabel_dataDeVencimento}" for="dataDeVencimento" />
+                        <p:calendar id="dataDeVencimento" pattern="dd/MM/yyyy" value="#{dividaController.selected.dataDeVencimento}" title="#{bundle.EditDividaTitle_dataDeVencimento}" required="true" requiredMessage="#{bundle.EditDividaRequiredMessage_dataDeVencimento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDividaLabel_credor}" for="credor" />
+                        <p:inputText id="credor" value="#{dividaController.selected.credor}" title="#{bundle.CreateDividaTitle_credor}" required="true" requiredMessage="#{bundle.CreateDividaRequiredMessage_credor}"/>
+                        <p:outputLabel value="#{bundle.CreateDividaLabel_status}" for="status" />
+                        <p:selectOneMenu id="status" value="#{dividaController.selected.status}" required="true" requiredMessage="Erro ao escolher a divda" style="width:125px">
+
+                            <f:selectItems value="#{dividaController.statusAvailableSelectOne}"
+                                           var="statusItem"
+                                           itemLabel="#{statusItem.descricao}"
+                                           itemValue="#{statusItem}"/>
+
+
+
+                        </p:selectOneMenu>
+
+
+
+
+                        <p:outputLabel value="#{bundle.CreateDividaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{dividaController.selected.id}" disabled="true" title="#{bundle.CreateDividaTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{dividaController.create}" value="#{bundle.Save}" update="display,:DividaListForm:datalist,:growl" oncomplete="handleSubmit(args,'DividaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DividaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

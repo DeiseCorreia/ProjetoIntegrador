@@ -1,0 +1,14 @@
+com\sistcob\entity\Cliente.class
+com\sistcob\controller\ClienteController.class
+com\sistcob\controller\AbstractFacade.class
+com\sistcob\controller\util\JsfUtil.class
+com\sistcob\controller\exceptions\RollbackFailureException.class
+com\sistcob\controller\ClienteController$ClienteControllerConverter.class
+com\sistcob\entity\Cliente_.class
+com\sistcob\controller\exceptions\PreexistingEntityException.class
+com\sistcob\controller\ClienteFacade.class
+com\sistcob\controller\exceptions\IllegalOrphanException.class
+com\sistcob\controller\util\JsfUtil$PersistAction.class
+com\sistcob\entity\Pagamento_.class
+com\sistcob\controller\ClienteJpaController.class
+com\sistcob\controller\exceptions\NonexistentEntityException.class

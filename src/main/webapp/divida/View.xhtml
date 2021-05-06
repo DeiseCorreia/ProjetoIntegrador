@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DividaViewDlg" widgetVar="DividaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDividaTitle}">
+            <h:form id="DividaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dividaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDividaLabel_devedor}"/>
+                        <h:outputText value="#{dividaController.selected.devedor.nome}" title="#{bundle.ViewDividaTitle_devedor}" />
+                        <h:outputText value="#{bundle.ViewDividaLabel_valorDiv}"/>
+                        <h:outputText value="#{dividaController.selected.valorDiv}" title="#{bundle.ViewDividaTitle_valorDiv}"/>
+                        <h:outputText value="#{bundle.ViewDividaLabel_dataDivda}"/>
+                        <h:outputText value="#{dividaController.selected.dataDivda}" title="#{bundle.ViewDividaTitle_dataDivda}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDividaLabel_dataDeVencimento}"/>
+                        <h:outputText value="#{dividaController.selected.dataDeVencimento}" title="#{bundle.ViewDividaTitle_dataDeVencimento}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDividaLabel_credor}"/>
+                        <h:outputText value="#{dividaController.selected.credor}" title="#{bundle.ViewDividaTitle_credor}"/>
+                        <h:outputText value="#{bundle.ViewDividaLabel_status}"/>
+                        <h:outputText value="#{dividaController.selected.status}" title="#{bundle.ViewDividaTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewDividaLabel_id}"/>
+                        <h:outputText value="#{dividaController.selected.id}" title="#{bundle.ViewDividaTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DividaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

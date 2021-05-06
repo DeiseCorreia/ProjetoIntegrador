@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PagamentoEditDlg" widgetVar="PagamentoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPagamentoTitle}">
+            <h:form id="PagamentoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pagamentoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPagamentoLabel_idDivida}" for="idDivida" />
+                        <p:selectOneMenu id="idDivida" value="#{pagamentoController.selected.idDivida}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{dividaController.itemsAvailableSelectOne}"
+                                           var="idDividaItem"
+                                           itemLabel="#{idDividaItem.id}"
+                                           itemValue="#{idDividaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPagamentoLabel_valor}" for="valor" />
+                        <p:selectOneMenu id="valor" value="#{pagamentoController.selected.valor}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{dividaController.itemsAvailableSelectOne}"
+                                           var="valorItem"
+                                           itemLabel="#{valorItem.id}"
+                                           itemValue="#{valorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPagamentoLabel_status}" for="status" />
+                        <p:selectOneMenu id="status" value="#{pagamentoController.selected.status}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{dividaController.itemsAvailableSelectOne}"
+                                           var="statusItem"
+                                           itemLabel="#{statusItem.id}"
+                                           itemValue="#{statusItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPagamentoLabel_nomeDev}" for="nomeDev" />
+                        <p:selectOneMenu id="nomeDev" value="#{pagamentoController.selected.nomeDev}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="nomeDevItem"
+                                           itemLabel="#{nomeDevItem.nome}"
+                                           itemValue="#{nomeDevItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPagamentoLabel_dataDePagamento}" for="dataDePagamento" />
+                        <p:calendar id="dataDePagamento" pattern="dd/MM/yyyy" value="#{pagamentoController.selected.dataDePagamento}" title="#{bundle.EditPagamentoTitle_dataDePagamento}" required="true" requiredMessage="#{bundle.EditPagamentoRequiredMessage_dataDePagamento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPagamentoLabel_valorAsePagar}" for="valorAsePagar" />
+                        <p:inputText id="valorAsePagar" value="#{pagamentoController.selected.valorAsePagar}" title="#{bundle.EditPagamentoTitle_valorAsePagar}" required="true" requiredMessage="#{bundle.EditPagamentoRequiredMessage_valorAsePagar}"/>
+                        <p:outputLabel value="#{bundle.EditPagamentoLabel_id}"  for="id" />
+                        <p:inputText id="id" value="#{pagamentoController.selected.id}" disabled="true" title="#{bundle.EditPagamentoTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pagamentoController.update}" value="#{bundle.Save}" update="display,:PagamentoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PagamentoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PagamentoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
